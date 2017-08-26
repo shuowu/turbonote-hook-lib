@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<iframe width="100%" height="800" src="iframe.html">
+</iframe>
+
+<script src="turbonote.js"></script>
+
+<script>
+  var init = function() {
+    var video = document.querySelector('iframe').contentDocument.querySelector('video');
+    if (!video) {
+      return;
+    }
+
+    TurboNote.init({
+      selector: 'iframe',
+      play: function() {
+        video.play();
+      },
+      pause: function() {
+        video.pause();
+      },
+      seek: function(time) {
+        video.currentTime = +time;
+      },
+      getCurrentTime: function() {
+        return video.currentTime;
+      },
+      getDuration: function() {
+        return video.duration;
+      },
+      isPlaying: function() {
+        return video.paused;
+      }
+    });
+  };
+
+  setTimeout(init, 1000);
+</script>
+
+</body>
+</html>
